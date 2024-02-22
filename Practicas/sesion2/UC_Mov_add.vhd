@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------------
 -- IMPORTANTE: CADA ESTUDIANTE DEBE COMPLETAR SUS DATOS 
--- Name: 
+-- Name: Aroa Redondo Zamora
 -- NIA: 
 -- Create Date:    
 -- Module Name:    UC_Mov_Add
@@ -36,13 +36,13 @@ end UC_Mov_Add;
 
 architecture Behavioral of UC_Mov_Add is
 
-    -- define constantes para mejorar la legibilidad del código
-    -- El valor "01 es un ejemplo. Pon los valores que tú hayas usado. 
+    -- define constantes para mejorar la legibilidad del cï¿½digo
+    -- El valor "01 es un ejemplo. Pon los valores que tï¿½ hayas usado. 
 	CONSTANT MOV_opcode : STD_LOGIC_VECTOR := "01";
 	-- CONSTANT HALT_opcode : ;
 	-- CONSTANT ADD_opcode : ;
-	-- Asignamos los nombres que queramos a los estados para mejorar la legibilidad del código
-	-- Los nombres que aquí aparecen son ejemplos
+	-- Asignamos los nombres que queramos a los estados para mejorar la legibilidad del cï¿½digo
+	-- Los nombres que aquï¿½ aparecen son ejemplos
 	type state_type is (Fetch_Dec, MOV, vuestro_estado1,vuestro_estado2 ); 
 	signal state, next_state : state_type; 
 	signal internal_RegWr, internal_MUX_ctrl, internal_load_A, internal_load_B, internal_load_ALUout, internal_PC_ce : STD_LOGIC; 
@@ -63,8 +63,8 @@ architecture Behavioral of UC_Mov_Add is
 	
 	UC_outputs : process (state)
 	begin 
-		-- Por defecto ponemos todas las señales a 0 que es el valor que garantiza que no alteramos nada
-		-- Así luego sólo hay que poner las señales que deben estar a '1'
+		-- Por defecto ponemos todas las seï¿½ales a 0 que es el valor que garantiza que no alteramos nada
+		-- Asï¿½ luego sï¿½lo hay que poner las seï¿½ales que deben estar a '1'
 		internal_PC_ce <= '0'; 
 		internal_RegWr <= '0'; 
 		internal_MUX_ctrl <= '0'; 

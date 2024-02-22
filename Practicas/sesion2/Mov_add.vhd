@@ -111,7 +111,7 @@
 -- Internal signals:    
 	SIGNAL RegWrite, MUX_ctrl, PC_ce, load_A, load_B, load_ALUout :  std_logic;
     SIGNAL BusA,BusB, Adder_out, BusW, Instruction, K_ext, RA_out, RB_out, ALU_out  :  std_logic_vector(31 downto 0);
-    SIGNAL RA, RB, RW: std_logic_vector (4 downto 0);
+    SIGNAL RA, RB, RW: std_logic_vector (4 downto 0); -- se podria poner ahi segido RA <= Instruction(14 downto 10) y asi con los demas
     SIGNAL PC_out: std_logic_vector (6 downto 0);
 ------------------------------------------------       
 
@@ -128,7 +128,7 @@
 					
 	UC: UC_Mov_Add PORT MAP (clk => clk, reset => reset, op_code => Instruction(31 downto 21), PC_ce => PC_ce, load_A => load_A, load_B => load_B, load_ALUout => load_ALUout, RegWr => RegWrite, MUX_ctrl => MUX_ctrl);
 	
-	Register_bank: BReg PORT MAP (clk => clk, reset => reset, RA => Instruction(14 downto 10), RB => Instruction(9 downto 5), RW => open, BusW => BusW, RegWrite => RegWrite, BusA => BusA, BusB => BusB);
+	Register_bank: BReg PORT MAP (clk => clk, reset => reset, RA => Instruction(14 downto 10), RB => Instruction(9 downto 5), RW => Instruction(4 downto 0), BusW => BusW, RegWrite => RegWrite, BusA => BusA, BusB => BusB);
 	
 	Reg_A: reg generic map (size => 32)
 			port map (	Din => BusA, clk => clk, reset => reset, load => load_A, Dout => RA_out);
@@ -143,7 +143,7 @@
 	
 	-- signed extension of K
 	Sign_ext: mux2_1 generic map (size => 16) port map (Din0 => "0000000000000000", Din1 => "1111111111111111", ctrl => Instruction(15), Dout => K_ext(31 downto 16));
-	K_ext(15 downto 0) <= Instruction(15 downto 0);
+	K_ext(15 downto 0) <= Instruction(20 downto 5); --Creo que hay que cmabiar esto
 	
 	mux: mux2_1 generic map (size => 32) port map (Din0 => ALU_out, Din1 => K_ext, ctrl => MUX_ctrl, Dout => BusW);
 	
