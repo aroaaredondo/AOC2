@@ -12,3 +12,5 @@ ADD r0, r4, r0    @ Sumar r4 a r0
 ADD r0, r5, r0    @ Sumar r5 a r0
 ADD r0, r6, r0    @ Sumar r6 a r0
 ADD r0, r7, r0    @ Sumar r7 a r0
+
+HALT   

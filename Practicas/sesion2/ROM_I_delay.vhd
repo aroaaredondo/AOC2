@@ -31,8 +31,8 @@ end memoriaROM_I;
 
 architecture Behavioral of memoriaROM_I is
 type RomType is array(0 to 127) of std_logic_vector(31 downto 0);
-signal ROM : RomType := (  			X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", -- words 0,1,2,3,4,5,6,7
-									X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000",-- words 8,9,...
+signal ROM : RomType := (  			X"0029C401", X"0029C402", X"0024E203", X"00207D04", X"00205785", X"00200786", X"00200127", X"00000440", -- words 0,1,2,3,4,5,6,7
+									X"00000060", X"00000080", X"000000A0", X"000000C0", X"000000E0", X"00400000", X"00000000", X"00000000",-- words 8,9,...
 									X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000",-- words 16,...
 									X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000",
 									X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000",
@@ -52,7 +52,7 @@ signal internal_Dout : std_logic_vector (31 downto 0);
 																		
 begin
  	--read port
-     internal_Dout <= ROM(conv_integer(ADDR)) when (RE='1') else X"00000000"; --sólo se lee si RE vale 1
+     internal_Dout <= ROM(conv_integer(ADDR)) when (RE='1') else X"00000000"; --sï¿½lo se lee si RE vale 1
      -- Propagation delay
      Dout <= internal_Dout after propagation_delay;
 
