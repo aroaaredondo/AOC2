@@ -38,12 +38,12 @@ architecture Behavioral of UC_Mov_Add is
 
     -- define constantes para mejorar la legibilidad del c�digo
     -- El valor "01 es un ejemplo. Pon los valores que t� hayas usado. 
-	CONSTANT MOV_opcode : STD_LOGIC_VECTOR := "01";
-	-- CONSTANT HALT_opcode : ;
-	-- CONSTANT ADD_opcode : ;
+	CONSTANT MOV_opcode : STD_LOGIC_VECTOR := "00000000001";
+	CONSTANT HALT_opcode :STD_LOGIC_VECTOR := "00000000010"; 
+	CONSTANT ADD_opcode : STD_LOGIC_VECTOR := "00000000000";
 	-- Asignamos los nombres que queramos a los estados para mejorar la legibilidad del c�digo
 	-- Los nombres que aqu� aparecen son ejemplos
-	type state_type is (Fetch_Dec, MOV, vuestro_estado1,vuestro_estado2 ); 
+	type state_type is (Fetch_Dec, MOV, HALT, ADD_Load, ADD_Aluout, ADD_Cargar ); 
 	signal state, next_state : state_type; 
 	signal internal_RegWr, internal_MUX_ctrl, internal_load_A, internal_load_B, internal_load_ALUout, internal_PC_ce : STD_LOGIC; 
 	begin
@@ -75,10 +75,15 @@ architecture Behavioral of UC_Mov_Add is
 			--Fetch_Dec 
 			-- This is an example of possible actions for the first state. 
 			-- Modify them, including your own actions 
-			WHEN  Fetch_Dec  	=>  internal_load_A <= '1'; internal_load_B <= '1';
+			WHEN  Fetch_Dec  	=> ;
+			WHEN  MOV  			=> internal_MUX_ctrl <= '1'; internal_RegWr <= '1'; internal_Pc_ce <= '1';
+			WHEN  HALT  		=> ; 
+			WHEN  ADD_Load  	=> internal_load_A <= '1'; internal_load_B <= '1';
+			WHEN  ADD_Aluout  	=> internal_load_ALUout <= '1'; 
+			WHEN  ADD_Cargar  	=> internal_RegWr <= '1'; internal_Mux_ctrl <= '1'; internal_Pc_ce <= '1';
 			-- Add all the states
 			-- para asegurarte que se cubren todos los casos 
-			WHEN OTHERS 	  	=> 
+			WHEN OTHERS 	  	=> ;
 		END CASE;
 	end process;
 	
@@ -87,10 +92,14 @@ architecture Behavioral of UC_Mov_Add is
 		CASE state IS
 			-- First state of the execution
 			WHEN  Fetch_Dec  	=>  If (op_code = MOV_opcode) then next_state <= MOV;
-									ELSIF --add other options
-									ELSE
+									ELSIF (op_code = HALT_opcode) then next_state <= HALT;
+									ELSE (op_code = ADD_opcode) then next_state <= ADD_Load; 
 									END IF;
 			WHEN  MOV  	=> 	next_state <= Fetch_Dec;
+			WHEN  HALT  	=> 	next_state <= HALT;
+			WHEN  ADD_Load  	=> 	next_state <= ADD_Aluout;
+			WHEN  ADD_Aluout  	=> 	next_state <= ADD_Cargar;
+			WHEN  ADD_Cargar  	=> 	next_state <= Fetch_Dec;
 			-- Add your states
 			-- para asegurarte que se cubren todos los casos 
 			WHEN OTHERS 	  	=> next_state <= Fetch_Dec; 
