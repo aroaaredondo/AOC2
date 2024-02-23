@@ -1,0 +1,6 @@
+ghdl -i --ieee=synopsys -fexplicit --workdir=WORK *.vhd
+ghdl --gen-makefile --ieee=synopsys --workdir=WORK mov_add_testbench > Makefile --hay que cambiar el nombre de testbech al que haga falta
+make
+./testbench --stop-time=500ns --wave=test.ghw -- tanto lo del test bench como cambiar el tiemppo para que se ejecute todo
+gtkwave test.ghw &
+ghdl --clean --workdir=WORK -- para borrar el directorio Work

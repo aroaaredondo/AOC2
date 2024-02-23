@@ -98,7 +98,7 @@
     		);  
     Port ( 	clk : in  STD_LOGIC;
 		   	reset : in  STD_LOGIC;
-    		op_code : in  STD_LOGIC_VECTOR (1 downto 0);
+    		op_code : in  STD_LOGIC_VECTOR (10 downto 0);
     		PC_ce : out  STD_LOGIC;
 			load_A : out  STD_LOGIC;
 			load_B : out  STD_LOGIC;
