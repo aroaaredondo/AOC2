@@ -1,31 +1,31 @@
 v 4
-file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "mux2_1_delay.vhd" "f1bd080e08899ee1be016aaafe1881eec9e107b5" "20240223090032.605":
+file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "mux2_1_delay.vhd" "f1bd080e08899ee1be016aaafe1881eec9e107b5" "20240224105235.452":
   entity mux2_1 at 20( 493) + 0 on 27;
   architecture behavioral of mux2_1 at 44( 1327) + 0 on 28;
-file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "counter_delay.vhd" "e5863088e3f3d8d1b5730200d5a56b9217dcb646" "20240223090032.192":
+file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "counter_delay.vhd" "e5863088e3f3d8d1b5730200d5a56b9217dcb646" "20240224105234.920":
   entity counter at 20( 487) + 0 on 15;
   architecture behavioral of counter at 47( 1453) + 0 on 16;
-file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "adder32_delay.vhd" "f7c3ed9e23478efe1ace2ed1df5bbc9cc3f93ece" "20240223090032.536":
+file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "adder32_delay.vhd" "f7c3ed9e23478efe1ace2ed1df5bbc9cc3f93ece" "20240224105235.381":
   entity adder32 at 20( 486) + 0 on 25;
   architecture behavioral of adder32 at 41( 1153) + 0 on 26;
-file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "UC_Mov_add.vhd" "53b13a95fff4473a3fc50f47ab2c948b1f6d3958" "20240223090032.304":
+file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "UC_Mov_add.vhd" "8ef2dd438bcefabbab144230119ff1f5fed964ac" "20240224105235.091":
   entity uc_mov_add at 10( 348) + 0 on 19;
   architecture behavioral of uc_mov_add at 37( 1251) + 0 on 20;
-file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "ROM_I_delay.vhd" "4faf10b531a606683fd46a797984254783f285de" "20240223090032.251":
+file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "ROM_I_delay.vhd" "4faf10b531a606683fd46a797984254783f285de" "20240224105235.012":
   entity memoriarom_i at 10( 328) + 0 on 17;
   architecture behavioral of memoriarom_i at 32( 998) + 0 on 18;
-file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "REGISTER_delay.vhd" "615dbf31decb296ca20267c72334d72db86eecdb" "20240223090032.461":
+file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "REGISTER_delay.vhd" "615dbf31decb296ca20267c72334d72db86eecdb" "20240224105235.282":
   entity reg at 2( 2) + 0 on 23;
   architecture behavioral of reg at 18( 505) + 0 on 24;
-file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "Mov_add.vhd" "00a3fe6b68aca90b0fc60144d67277f0d6bfe30a" "20240223090032.095":
-  entity mov_add at 11( 360) + 2 on 13;
-  architecture behavior of mov_add at 21( 563) + 2 on 14;
-file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "Mov_Add_test.vhd" "73ceeeab0e18be8923d4b75704183fd0609eb3cb" "20240223090031.989":
+file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "Mov_add.vhd" "063b4e146d62de9855387a8c768d1c001af12329" "20240224110253.107":
+  entity mov_add at 11( 360) + 2 on 29;
+  architecture behavior of mov_add at 21( 563) + 2 on 30;
+file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "Mov_Add_test.vhd" "73ceeeab0e18be8923d4b75704183fd0609eb3cb" "20240224105234.708":
   entity mov_add_testbench at 3( 26) + 2 on 11;
   architecture behavior of mov_add_testbench at 10( 165) + 2 on 12;
-file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "BReg_delays.vhd" "54c2808bab0af4438bb0c7041acc7a2ee07ed945" "20240223090032.375":
+file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "BReg_delays.vhd" "54c2808bab0af4438bb0c7041acc7a2ee07ed945" "20240224105235.174":
   entity breg at 20( 517) + 0 on 21;
   architecture behavioral of breg at 49( 1823) + 0 on 22;
-file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "BR_test.vhd" "f9da784ce16d7fd9d795a23c336aca747594c2b9" "20240223085926.353":
+file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "BR_test.vhd" "f9da784ce16d7fd9d795a23c336aca747594c2b9" "20240224105225.198":
   entity br_testbench at 3( 26) + 2 on 4;
   architecture behavior of br_testbench at 10( 155) + 2 on 4;

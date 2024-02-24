@@ -142,7 +142,7 @@
 			port map (	Din => Adder_out, clk => clk, reset => reset, load => load_ALUout, Dout => ALU_out);
 	
 	-- signed extension of K
-	Sign_ext: mux2_1 generic map (size => 16) port map (Din0 => "0000000000000000", Din1 => "1111111111111111", ctrl => Instruction(15), Dout => K_ext(31 downto 16));
+	Sign_ext: mux2_1 generic map (size => 16) port map (Din0 => "0000000000000000", Din1 => "1111111111111111", ctrl => Instruction(20), Dout => K_ext(31 downto 16));
 	K_ext(15 downto 0) <= Instruction(20 downto 5); --Creo que hay que cmabiar esto
 	
 	mux: mux2_1 generic map (size => 32) port map (Din0 => ALU_out, Din1 => K_ext, ctrl => MUX_ctrl, Dout => BusW);

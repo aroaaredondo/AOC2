@@ -80,7 +80,7 @@ architecture Behavioral of UC_Mov_Add is
 			WHEN  HALT  		=>  
 			WHEN  ADD_Load  	=> internal_load_A <= '1'; internal_load_B <= '1';
 			WHEN  ADD_Aluout  	=> internal_load_ALUout <= '1'; 
-			WHEN  ADD_Cargar  	=> internal_RegWr <= '1'; internal_Mux_ctrl <= '1'; internal_Pc_ce <= '1';
+			WHEN  ADD_Cargar  	=> internal_RegWr <= '1'; internal_Mux_ctrl <= '0'; internal_Pc_ce <= '1';
 			-- Add all the states
 			-- para asegurarte que se cubren todos los casos 
 			WHEN OTHERS 	  	=> 
