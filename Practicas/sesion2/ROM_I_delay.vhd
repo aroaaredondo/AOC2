@@ -1,7 +1,7 @@
 ----------------------------------------------------------------------------------
 -- IMPORTANTE: CADA ESTUDIANTE DEBE COMPLETAR SUS DATOS 
--- Name: 
--- NIA: 
+-- Name: Aroa Redondo Zamora
+-- NIA: 851769
 -- Create Date:    
 -- Module Name: memoriaROM_I
 -- Additional Comments: 

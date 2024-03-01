@@ -17,9 +17,9 @@ file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "RO
 file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "REGISTER_delay.vhd" "615dbf31decb296ca20267c72334d72db86eecdb" "20240224105235.282":
   entity reg at 2( 2) + 0 on 23;
   architecture behavioral of reg at 18( 505) + 0 on 24;
-file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "Mov_add.vhd" "063b4e146d62de9855387a8c768d1c001af12329" "20240224110253.107":
-  entity mov_add at 11( 360) + 2 on 29;
-  architecture behavior of mov_add at 21( 563) + 2 on 30;
+file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "Mov_add.vhd" "063b4e146d62de9855387a8c768d1c001af12329" "20240225111536.980":
+  entity mov_add at 11( 360) + 2 on 33;
+  architecture behavior of mov_add at 21( 563) + 2 on 34;
 file "/mnt/c/Users/aroaa/OneDrive/Documentos/GitHub/AOC2/Practicas/sesion2/" "Mov_Add_test.vhd" "73ceeeab0e18be8923d4b75704183fd0609eb3cb" "20240224105234.708":
   entity mov_add_testbench at 3( 26) + 2 on 11;
   architecture behavior of mov_add_testbench at 10( 165) + 2 on 12;
