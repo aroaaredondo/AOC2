@@ -20,7 +20,7 @@
          
           
   -- Clock period definitions
-   constant CLK_period : time := 100 ns;
+   constant CLK_period : time := 32 ns;
   BEGIN
 
   -- Component Instantiation
@@ -40,7 +40,7 @@
       	-- activamos reset
    		reset <= '1';
     	wait for CLK_period*2;
-		-- desactivamos reset. Se ejecutarán las instrucciones que haya en la ROM
+		-- desactivamos reset. Se ejecutarï¿½n las instrucciones que haya en la ROM
     	reset <= '0';
 		wait;
    end process;
