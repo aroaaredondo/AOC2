@@ -39,8 +39,8 @@ entity Data_Memory_Subsystem is port (
 	Din : in std_logic_vector (31 downto 0);--entrada de datos desde el Mips
 	WE : in std_logic;		-- write enable	del MIPS
 	RE : in std_logic;		-- read enable del MIPS	
-	Mem_ready: out std_logic; -- indica si podemos hacer la operación solicitada en el ciclo actual. En esta memoria vale siempre '1'.
-	Dout : out std_logic_vector (31 downto 0)); --dato que se envía al Mips
+	Mem_ready: out std_logic; -- indica si podemos hacer la operaciï¿½n solicitada en el ciclo actual. En esta memoria vale siempre '1'.
+	Dout : out std_logic_vector (31 downto 0)); --dato que se envï¿½a al Mips
 end Data_Memory_Subsystem;
 
 architecture Behavioral of Data_Memory_Subsystem is
@@ -53,7 +53,7 @@ signal RAM : RamType := (  X"00000001", X"00000002", X"00000004", X"00000000", X
 									X"00000000", X"00000002", X"00001200", X"00000000", X"00000000", X"00000002", X"00000000", X"00000002",
 									X"000006AD", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000",
 									X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00100000", X"00000000", X"00000000",
-									X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"02000000", X"08010000", X"00000000",
+									X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"02000000", X"08010000", X"00000000", ---palabras 64,65,66,67,68,69,70,71
 									X"00000000", X"00000000", X"00000010", X"00000000", X"00000000", X"00000000", X"00000002", X"00200000",
 									X"00000000", X"20080001", X"00000000", X"00000000", X"00000800", X"40000000", X"00000000", X"00000000",
 									X"00000000", X"000009C2", X"00000000", X"00000000", X"00000800", X"00000000", X"00080800", X"00000000",
@@ -64,20 +64,20 @@ signal RAM : RamType := (  X"00000001", X"00000002", X"00000004", X"00000000", X
 signal dir_7:  std_logic_vector(6 downto 0); 
 begin
  
- dir_7 <= ADDR(8 downto 2); -- como la memoria es de 128 plalabras no usamos la dirección completa sino sólo 7 bits. Como se direccionan los bytes, pero damos palabras no usamos los 2 bits menos significativos
- MEM_ready <= '1'; --En esta versión la memoria siempre está preparada
+ dir_7 <= ADDR(8 downto 2); -- como la memoria es de 128 plalabras no usamos la direcciï¿½n completa sino sï¿½lo 7 bits. Como se direccionan los bytes, pero damos palabras no usamos los 2 bits menos significativos
+ MEM_ready <= '1'; --En esta versiï¿½n la memoria siempre estï¿½ preparada
  process (CLK)
     begin
         if (CLK'event and CLK = '1') then
-            if (WE = '1') then -- sólo se escribe si WE vale 1
+            if (WE = '1') then -- sï¿½lo se escribe si WE vale 1
                 RAM(conv_integer(dir_7)) <= Din;
-                -- la siguiente línea saca un aviso por pantalla con el dato que se ha escrito
+                -- la siguiente lï¿½nea saca un aviso por pantalla con el dato que se ha escrito
                 report "Simulation time : " & time'IMAGE(now) & ".  Data written: " & integer'image(to_integer(unsigned(Din))) & ", in ADDR = " & integer'image(to_integer(unsigned(ADDR)));
             end if;
         end if;
     end process;
 
-    Dout <= RAM(conv_integer(dir_7)) when (RE='1') else "00000000000000000000000000000000"; --sólo se lee si RE vale 1
+    Dout <= RAM(conv_integer(dir_7)) when (RE='1') else "00000000000000000000000000000000"; --sï¿½lo se lee si RE vale 1
 
 end Behavioral;
 
