@@ -1,11 +1,19 @@
 
 MOV     #70,  r1         @ Cargar 70 en r1 que es la posicion donde se encuentran los datos.
 JAL     r0,    #7           ---Poner la direccion donde queramos saltar   
-ADD r3, r2, r8    @ Sumar r2 a r0
-ADD r0, r4, r8    @ Sumar r4 a r0
-ADD r0, r5, r8    @ Sumar r5 a r0
-ADD r0, r6, r8    @ Sumar r6 a r0
-ADD r0, r7, r8    @ Sumar r7 a r0
+ADD r3, r2, r8    @ Sumar r2 a r8
+nop
+nop
+ADD r8, r4, r8    @ Sumar r4 a r8
+nop
+nop
+ADD r8, r5, r8    @ Sumar r5 a r8
+nop
+nop
+ADD r8, r6, r8    @ Sumar r6 a r8
+nop
+nop
+ADD r8, r7, r8    @ Sumar r7 a r8
 MOV r9, #0
 SW r8,  0(r9)             @ Guardar el resultado en la posicion 0
 HALT   

@@ -30,7 +30,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 --use UNISIM.VComponents.all;
 
 entity UC is
-    Port ( 	valid_I_ID : in  STD_LOGIC; --indica si es una instrucción válida
+    Port ( 	valid_I_ID : in  STD_LOGIC; --indica si es una instrucciï¿½n vï¿½lida
     	   	IR_op_code : in  STD_LOGIC_VECTOR (5 downto 0);
            	Branch : out  STD_LOGIC;
            	RegDst : out  STD_LOGIC;
@@ -39,11 +39,11 @@ entity UC is
            	MemRead : out  STD_LOGIC;
            	MemtoReg : out  STD_LOGIC;
            	RegWrite : out  STD_LOGIC;
-           	UNDEF: out STD_LOGIC; --indica que el código de operación no pertenence a una instrucción conocida (es útil para detectar errores en el código al depurar)
-	   		--nueva señal jal
-           	jal : out  STD_LOGIC; --indica que es una instrucción jal 
-           	--nueva señal ret
-           	ret : out  STD_LOGIC --indica que es una instrucción ret 
+           	UNDEF: out STD_LOGIC; --indica que el cï¿½digo de operaciï¿½n no pertenence a una instrucciï¿½n conocida (es ï¿½til para detectar errores en el cï¿½digo al depurar)
+	   		--nueva seï¿½al jal
+           	jal : out  STD_LOGIC; --indica que es una instrucciï¿½n jal 
+           	--nueva seï¿½al ret
+           	ret : out  STD_LOGIC --indica que es una instrucciï¿½n ret 
 		     );
 end UC;
 
@@ -56,14 +56,14 @@ CONSTANT BEQ_opcode : STD_LOGIC_VECTOR (5 downto 0) := "000100";
 CONSTANT JAL_opcode : STD_LOGIC_VECTOR (5 downto 0) := "000101";
 CONSTANT RET_opcode : STD_LOGIC_VECTOR (5 downto 0) := "000110";
 begin
--- Si IR_op = 0 es nop, IR_op=1 es aritmética, IR_op=2 es LW, IR_op=3 es SW, IR_op= 4 es BEQ, IR_op=5 es jal, IR_op= 6 es ret,
+-- Si IR_op = 0 es nop, IR_op=1 es aritmï¿½tica, IR_op=2 es LW, IR_op=3 es SW, IR_op= 4 es BEQ, IR_op=5 es jal, IR_op= 6 es ret,
 -- este CASE es en realidad un mux con las entradas fijas.
 UC_mux : process (IR_op_code)
 begin 
-	-- Por defecto ponemos todas las señales a 0 que es el valor que garantiza que no alteramos nada
+	-- Por defecto ponemos todas las seï¿½ales a 0 que es el valor que garantiza que no alteramos nada
 	Branch <= '0'; RegDst <= '0'; ALUSrc <= '0'; MemWrite <= '0'; MemRead <= '0'; MemtoReg <= '0'; RegWrite <= '0'; UNDEF <= '0'; jal <= '0'; ret <= '0';
-	IF valid_I_ID = '1' then --si la instrucción es válida analizamos su código de operación
-		-- En este CASE activamos las señaes que necesita cada instrucción
+	IF valid_I_ID = '1' then --si la instrucciï¿½n es vï¿½lida analizamos su cï¿½digo de operaciï¿½n
+		-- En este CASE activamos las seï¿½aes que necesita cada instrucciï¿½n
 		CASE IR_op_code IS
 			--NOP 
 			WHEN  NOP_opcode  	=>  
@@ -79,7 +79,7 @@ begin
 			WHEN  jal_opcode  	=>  jal <= '1'; --completar
 			-- JAL
 			WHEN  RET_opcode  	=>  ret <= '1'; --completar
-			-- Instrucción no definida
+			-- Instrucciï¿½n no definida
 			WHEN  OTHERS 	  	=>  UNDEF <= '1';
 		  END CASE;
 	END IF;

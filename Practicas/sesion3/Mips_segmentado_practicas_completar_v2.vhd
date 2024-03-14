@@ -1,10 +1,10 @@
 ----------------------------------------------------------------------------------
--- Description: Mips segmentado tal y como lo hemos estudiado en clase. Sus características son:
+-- Description: Mips segmentado tal y como lo hemos estudiado en clase. Sus caracterï¿½sticas son:
 -- Saltos 1-retardados
--- instrucciones aritméticas, LW, SW y BEQ
+-- instrucciones aritmï¿½ticas, LW, SW y BEQ
 -- MI y MD de 128 palabras de 32 bits
 -- 32 bits de entrada y otros 32 de salida para IO mapeados en las direcciones 0xffff0000 (entrada) y 0xffff0004 (salida)
--- Línea de IRQ
+-- Lï¿½nea de IRQ
 -- Dependencies: 
 --
 -- Revision: 
@@ -24,7 +24,7 @@ end MIPs_segmentado;
 architecture Behavioral of MIPs_segmentado is
 
 component reg is
-    generic (size: natural := 32);  -- por defecto son de 32 bits, pero se puede usar cualquier tamaño
+    generic (size: natural := 32);  -- por defecto son de 32 bits, pero se puede usar cualquier tamaï¿½o
 	Port ( Din : in  STD_LOGIC_VECTOR (size -1 downto 0);
 	clk : in  STD_LOGIC;
 	reset : in  STD_LOGIC;
@@ -62,8 +62,8 @@ component Data_Memory_Subsystem is port (
 	Din : in std_logic_vector (31 downto 0);--entrada de datos desde el Mips
 	WE : in std_logic;	-- write enable	del MIPS
 	RE : in std_logic;	-- read enable del MIPS	
-	Mem_ready: out std_logic; -- indica si podemos hacer la operación solicitada en el ciclo actual. Cuando se complique el subsistema a veces habrá que esperar
-	Dout : out std_logic_vector (31 downto 0)); --dato que se envía al Mips
+	Mem_ready: out std_logic; -- indica si podemos hacer la operaciï¿½n solicitada en el ciclo actual. Cuando se complique el subsistema a veces habrï¿½ que esperar
+	Dout : out std_logic_vector (31 downto 0)); --dato que se envï¿½a al Mips
 end component;
 
 
@@ -77,14 +77,14 @@ component memoriaRAM_I is port (
 end component;
 
 component Banco_ID is
- Port ( IR_in : in  STD_LOGIC_VECTOR (31 downto 0); -- instrucción leida en IF
+ Port ( IR_in : in  STD_LOGIC_VECTOR (31 downto 0); -- instrucciï¿½n leida en IF
         PC4_in:  in  STD_LOGIC_VECTOR (31 downto 0); -- PC+4 sumado en IF
 		clk : in  STD_LOGIC;
 		reset : in  STD_LOGIC;
         load : in  STD_LOGIC;
-        IR_ID : out  STD_LOGIC_VECTOR (31 downto 0); -- instrucción en la etapa ID
+        IR_ID : out  STD_LOGIC_VECTOR (31 downto 0); -- instrucciï¿½n en la etapa ID
         PC4_ID:  out  STD_LOGIC_VECTOR (31 downto 0);
-        --bits de validez. Permiten inhabilitar instrucciones. No se hace en la práctica 3, pero sí en los proyecto
+        --bits de validez. Permiten inhabilitar instrucciones. No se hace en la prï¿½ctica 3, pero sï¿½ en los proyecto
         valid_I_IF: in STD_LOGIC;
         valid_I_ID: out STD_LOGIC); 
 
@@ -115,7 +115,7 @@ component two_bits_shifter is
 end component;
 
 component UC is
-	Port ( valid_I_ID : in  STD_LOGIC; --indica si es una instrucción válida			
+	Port ( valid_I_ID : in  STD_LOGIC; --indica si es una instrucciï¿½n vï¿½lida			
 		IR_op_code : in  STD_LOGIC_VECTOR (5 downto 0);
         Branch : out  STD_LOGIC;
         RegDst : out  STD_LOGIC;
@@ -124,10 +124,10 @@ component UC is
         MemRead : out  STD_LOGIC;
         MemtoReg : out  STD_LOGIC;
         RegWrite : out  STD_LOGIC;
-        --nuevas señales jal y ret
-        jal : out  STD_LOGIC; --indica que es una instrucción jal 
-        ret : out  STD_LOGIC; --indica que es una instrucción ret
-		undef: out STD_LOGIC --indica que el código de operación no pertenence a una instrucción conocida. En este procesador se usa sólo para depurar
+        --nuevas seï¿½ales jal y ret
+        jal : out  STD_LOGIC; --indica que es una instrucciï¿½n jal 
+        ret : out  STD_LOGIC; --indica que es una instrucciï¿½n ret
+		undef: out STD_LOGIC --indica que el cï¿½digo de operaciï¿½n no pertenence a una instrucciï¿½n conocida. En este procesador se usa sï¿½lo para depurar
            );
 end component;
 
@@ -159,12 +159,12 @@ COMPONENT Banco_EX is
            	Reg_Rd_ID : in  STD_LOGIC_VECTOR (4 downto 0);
            	Reg_Rt_EX : out  STD_LOGIC_VECTOR (4 downto 0);
            	Reg_Rd_EX : out  STD_LOGIC_VECTOR (4 downto 0);
-           	--bits de validez. Permiten inhabilitar instrucciones. No se hace en la práctica 3, pero sí en los proyecto
+           	--bits de validez. Permiten inhabilitar instrucciones. No se hace en la prï¿½ctica 3, pero sï¿½ en los proyecto
         	valid_I_EX_in: in STD_LOGIC;
         	valid_I_EX: out STD_LOGIC;
-        	-- Puertos para añadir señales
-			-- Estos puertos se utilizan para añadir funcionalidades al MIPS que requieran enviar información de una etapa a las etapas siguientes
-			-- El banco permite enviar dos señales de un bit (ext_signal_1 y 2) y dos palabras de 32 bits ext_word_1 y 2)
+        	-- Puertos para aï¿½adir seï¿½ales
+			-- Estos puertos se utilizan para aï¿½adir funcionalidades al MIPS que requieran enviar informaciï¿½n de una etapa a las etapas siguientes
+			-- El banco permite enviar dos seï¿½ales de un bit (ext_signal_1 y 2) y dos palabras de 32 bits ext_word_1 y 2)
 			ext_signal_1_ID: in  STD_LOGIC;
 			ext_signal_1_EX: out  STD_LOGIC;
 			ext_signal_2_ID: in  STD_LOGIC;
@@ -173,7 +173,7 @@ COMPONENT Banco_EX is
 			ext_word_1_EX:  OUT  STD_LOGIC_VECTOR (31 downto 0);
 			ext_word_2_ID:  IN  STD_LOGIC_VECTOR (31 downto 0);
 			ext_word_2_EX:  OUT  STD_LOGIC_VECTOR (31 downto 0)
-			--fin puertos extensión
+			--fin puertos extensiï¿½n
         	);
 end component;
         
@@ -196,7 +196,7 @@ end component;
 	
 COMPONENT Banco_MEM is
 	Port ( 		ALU_out_EX : in  STD_LOGIC_VECTOR (31 downto 0); 
-	ALU_out_MEM : out  STD_LOGIC_VECTOR (31 downto 0); -- instrucción leida en IF
+	ALU_out_MEM : out  STD_LOGIC_VECTOR (31 downto 0); -- instrucciï¿½n leida en IF
 	clk : in  STD_LOGIC;
 	reset : in  STD_LOGIC;
 	load : in  STD_LOGIC;
@@ -212,12 +212,12 @@ COMPONENT Banco_MEM is
 	BusB_MEM: out  STD_LOGIC_VECTOR (31 downto 0); -- para los store
 	RW_EX : in  STD_LOGIC_VECTOR (4 downto 0); -- registro destino de la escritura
 	RW_MEM : out  STD_LOGIC_VECTOR (4 downto 0);    	
-	--bits de validez. Permiten inhabilitar instrucciones. No se hace en la práctica 3, pero sí en los proyecto
+	--bits de validez. Permiten inhabilitar instrucciones. No se hace en la prï¿½ctica 3, pero sï¿½ en los proyecto
 	valid_I_EX: in STD_LOGIC;
 	valid_I_MEM: out STD_LOGIC;
-	-- Puertos para añadir señales
-	-- Estos puertos se utilizan para añadir funcionalidades al MIPS que requieran enviar información de una etapa a las etapas siguientes
-	-- El banco permite enviar dos señales de un bit (ext_signal_1 y 2) y dos palabras de 32 bits ext_word_1 y 2)
+	-- Puertos para aï¿½adir seï¿½ales
+	-- Estos puertos se utilizan para aï¿½adir funcionalidades al MIPS que requieran enviar informaciï¿½n de una etapa a las etapas siguientes
+	-- El banco permite enviar dos seï¿½ales de un bit (ext_signal_1 y 2) y dos palabras de 32 bits ext_word_1 y 2)
 	ext_signal_1_EX: in  STD_LOGIC;
 	ext_signal_1_MEM: out  STD_LOGIC;
 	ext_signal_2_EX: in  STD_LOGIC;
@@ -226,7 +226,7 @@ COMPONENT Banco_MEM is
 	ext_word_1_MEM:  OUT  STD_LOGIC_VECTOR (31 downto 0);
 	ext_word_2_EX:  IN  STD_LOGIC_VECTOR (31 downto 0);
 	ext_word_2_MEM:  OUT  STD_LOGIC_VECTOR (31 downto 0)
-	--fin puertos extensión
+	--fin puertos extensiï¿½n
 	);
     END COMPONENT;
  
@@ -244,12 +244,12 @@ COMPONENT Banco_MEM is
         RegWrite_WB : out  STD_LOGIC;
         RW_MEM : in  STD_LOGIC_VECTOR (4 downto 0); -- registro destino de la escritura
         RW_WB : out  STD_LOGIC_VECTOR (4 downto 0); -- PC+4 en la etapa IDend Banco_WB;
-        --bits de validez. Permiten inhabilitar instrucciones. No se hace en la práctica 3, pero sí en los proyecto
+        --bits de validez. Permiten inhabilitar instrucciones. No se hace en la prï¿½ctica 3, pero sï¿½ en los proyecto
         valid_I_WB_in: in STD_LOGIC;
         valid_I_WB: out STD_LOGIC;
-        -- Puertos para añadir señales
-		-- Estos puertos se utilizan para añadir funcionalidades al MIPS que requieran enviar información de una etapa a las etapas siguientes
-		-- El banco permite enviar dos señales de un bit (ext_signal_1 y 2) y dos palabras de 32 bits ext_word_1 y 2)
+        -- Puertos para aï¿½adir seï¿½ales
+		-- Estos puertos se utilizan para aï¿½adir funcionalidades al MIPS que requieran enviar informaciï¿½n de una etapa a las etapas siguientes
+		-- El banco permite enviar dos seï¿½ales de un bit (ext_signal_1 y 2) y dos palabras de 32 bits ext_word_1 y 2)
 		ext_signal_1_MEM: in  STD_LOGIC;
 		ext_signal_1_WB: out  STD_LOGIC;
 		ext_signal_2_MEM: in  STD_LOGIC;
@@ -258,7 +258,7 @@ COMPONENT Banco_MEM is
 		ext_word_1_WB:  OUT  STD_LOGIC_VECTOR (31 downto 0);
 		ext_word_2_MEM:  IN  STD_LOGIC_VECTOR (31 downto 0);
 		ext_word_2_WB:  OUT  STD_LOGIC_VECTOR (31 downto 0)
-		--fin puertos extensión
+		--fin puertos extensiï¿½n
 		);
     END COMPONENT; 
     
@@ -270,7 +270,7 @@ COMPONENT Banco_MEM is
        		count_enable : in  STD_LOGIC;
        		count : out  STD_LOGIC_VECTOR (size-1 downto 0));
 	end COMPONENT;
--- Señales internas MIPS	
+-- Seï¿½ales internas MIPS	
 	CONSTANT ARIT : STD_LOGIC_VECTOR (5 downto 0) := "000001";
 	signal load_PC, RegWrite_ID, RegWrite_EX, RegWrite_MEM, RegWrite_WB, RegWrite, Z, Branch_ID, RegDst_ID, RegDst_EX, ALUSrc_ID, ALUSrc_EX: std_logic;
 	signal MemtoReg_ID, MemtoReg_EX, MemtoReg_MEM, MemtoReg_WB, MemWrite_ID, MemWrite_EX, MemWrite_MEM, MemRead_ID, MemRead_EX, MemRead_MEM, WE, RE: std_logic;
@@ -281,11 +281,13 @@ COMPONENT Banco_MEM is
 	signal IR_op_code: std_logic_vector(5 downto 0);
 	signal reset_ID, reset_MEM, load_ID, load_EX, load_Mem : std_logic;
 	signal undef : std_logic;
---señales de control de los muxes 4 a 1 que hemos añadido apra el jal y el ret(en el mips original eran 2 a 1)
+--seï¿½ales de control de los muxes 4 a 1 que hemos aï¿½adido apra el jal y el ret(en el mips original eran 2 a 1)
 		signal ctrl_Mux4a1_escritura_BR, PCSrc: std_logic_vector (1 downto 0);
 -- Instrucciones jal y ret
-	signal jal_ID, ret_ID : std_logic; --si necesitáis propagar las señales a otras etapas, definid las señales necesarias. Ejemplo: jal_EX, jal_MEM...
--- Bit validez etapas. Permiten inhabilitar instrucciones. No se hace en la práctica 3, pero sí en los proyecto
+	signal jal_ID, ret_ID : std_logic; --si necesitï¿½is propagar las seï¿½ales a otras etapas, definid las seï¿½ales necesarias. Ejemplo: jal_EX, jal_MEM...
+	signal jal_EX, jal_MEM, jal_WB: std_logic;
+	signal PC4_EX, PC4_MEM, PC4_WB: std_logic_vector(31 downto 0);
+-- Bit validez etapas. Permiten inhabilitar instrucciones. No se hace en la prï¿½ctica 3, pero sï¿½ en los proyecto
 	signal valid_I_IF, valid_I_ID, valid_I_EX_in, valid_I_EX, valid_I_MEM, valid_I_WB_in, valid_I_WB: std_logic;
 -- contadores
 	signal cycles: std_logic_vector(15 downto 0);
@@ -300,23 +302,23 @@ begin
 			port map ( Din => PC_in, clk => clk, reset => reset, load => load_PC, Dout => PC_out);
 	
 	------------------------------------------------------------------------------------
-	-- vale '1' porque en la versión actual el procesador no para nunca
-	-- Si queremos detener una instrucción en la etapa fetch habrá que ponerlo a '0'
+	-- vale '1' porque en la versiï¿½n actual el procesador no para nunca
+	-- Si queremos detener una instrucciï¿½n en la etapa fetch habrï¿½ que ponerlo a '0'
 	load_PC <=  '1'; 
 	------------------------------------------------------------------------------------
-	 -- la x en x"00000004" indica que está en hexadecimal
+	 -- la x en x"00000004" indica que estï¿½ en hexadecimal
 	adder_4: adder32 port map (Din0 => PC_out, Din1 => x"00000004", Dout => PC4);
 	------------------------------------------------------------------------------------
 	-- mux de entrada al PC (PC+4 o direccion de salto si se detecta salto tomado en D)
 	-- Tiene dos entradas que no se usan. Se pueden utilizar para dar soporte a nuevas intrucciones
-	muxPC: mux4_1 port map (Din0 => PC4, DIn1 => Dirsalto_ID, Din2 => x"00000000", DIn3 => x"00000000", ctrl => PCSrc, Dout => PC_in);							
+	muxPC: mux4_1 port map (Din0 => PC4, DIn1 => Dirsalto_ID, Din2 => BusA, DIn3 => x"00000000", ctrl => PCSrc, Dout => PC_in);							
 	------------------------------------------------------------------------------------
 	Mem_I: memoriaRAM_I PORT MAP (CLK => CLK, ADDR => PC_out, Din => x"00000000", WE => '0', RE => '1', Dout => IR_in);
 	------------------------------------------------------------------------------------
 	reset_ID <= reset;
-	-- Las señal valid_I_IF es siempre '1' porque nunca eliminamos una instrucción en este procesador
+	-- Las seï¿½al valid_I_IF es siempre '1' porque nunca eliminamos una instrucciï¿½n en este procesador
 	valid_I_IF <= '1';	
-	-- el load vale uno porque este procesador no para nunca. Si queremos que una instrucción no avance habrá que poner el load a '0'
+	-- el load vale uno porque este procesador no para nunca. Si queremos que una instrucciï¿½n no avance habrï¿½ que poner el load a '0'
 	load_ID <= '1';
 -----------------------------------------------------------------
 	Banco_IF_ID: Banco_ID port map ( 
@@ -329,7 +331,7 @@ begin
 	--------------------------------------------------
 	-- BANCOS DE REGISTROS
 	
-	-- sólo se escribe si la instrucción en WB es válida
+	-- sï¿½lo se escribe si la instrucciï¿½n en WB es vï¿½lida
 	RegWrite <= RegWrite_WB and valid_I_WB;
 	
 	INT_Register_bank: BReg PORT MAP (
@@ -349,7 +351,7 @@ begin
 	-------------------------------------------------------------------------------------
 	IR_op_code <= IR_ID(31 downto 26);
 	
-	-- Si la Instrucción en ID no es válida, todas las señales son 0
+	-- Si la Instrucciï¿½n en ID no es vï¿½lida, todas las seï¿½ales son 0
 	UC_seg: UC port map (
 				valid_I_ID => valid_I_ID, IR_op_code => IR_op_code, Branch => Branch_ID, RegDst => RegDst_ID,  
 				ALUSrc => ALUSrc_ID, MemWrite => MemWrite_ID,  
@@ -358,9 +360,9 @@ begin
 				jal => jal_ID, ret => ret_ID
 			);
 				
-	-- Salto tomado se debe activar cada vez que la instrucción en D produzca un salto en la ejecución.
+	-- Salto tomado se debe activar cada vez que la instrucciï¿½n en D produzca un salto en la ejecuciï¿½n.
 	-- Eso incluye los saltos tomados en los BEQs (Z AND Branch_ID)
-	-- Como en la versión inicial las entradas 2 y 3 no se usan, PCSrc(1) empieza con valor '0'
+	-- Como en la versiï¿½n inicial las entradas 2 y 3 no se usan, PCSrc(1) empieza con valor '0'
 	PCSrc(1) <= '0';
 	PCSrc(0) <= Z AND Branch_ID;
 								
@@ -368,9 +370,9 @@ begin
 	valid_I_EX_in	<=  valid_I_ID;
 				
 	-------------------------------------------------------------------------------------
-	-- si la operación es aritmética (es decir: IR_op_code= "000001") miro el campo funct
-	-- como sólo hay 4 operaciones en la alu, basta con los bits menos significativos del campo func de la instrucción	
-	-- si no es aritmética le damos el valor de la suma (000)
+	-- si la operaciï¿½n es aritmï¿½tica (es decir: IR_op_code= "000001") miro el campo funct
+	-- como sï¿½lo hay 4 operaciones en la alu, basta con los bits menos significativos del campo func de la instrucciï¿½n	
+	-- si no es aritmï¿½tica le damos el valor de la suma (000)
 	ALUctrl_ID <= IR_ID(2 downto 0) when IR_op_code= ARIT else "000"; 
 	
 	
@@ -384,9 +386,9 @@ begin
 		ALUctrl_ID => ALUctrl_ID, ALUctrl_EX => ALUctrl_EX, inm_ext => inm_ext, inm_ext_EX=> inm_ext_EX,
 		Reg_Rt_ID => IR_ID(20 downto 16), Reg_Rd_ID => IR_ID(15 downto 11), Reg_Rt_EX => Reg_Rt_EX, Reg_Rd_EX => Reg_Rd_EX, 
 		valid_I_EX_in => valid_I_EX_in, valid_I_EX => valid_I_EX,
-		-- Puertos de extensión. Inicialmente están desconectados
-		ext_word_1_ID => x"00000000", ext_word_2_ID => x"00000000", ext_signal_1_ID => '0', ext_signal_2_ID => '0',
-		ext_word_1_EX => open, ext_word_2_EX => open, ext_signal_1_EX => open, ext_signal_2_EX => open
+		-- Puertos de extensiï¿½n. Inicialmente estï¿½n desconectados
+		ext_word_1_ID => PC4_ID, ext_word_2_ID => x"00000000", ext_signal_1_ID => jal_ID, ext_signal_2_ID => '0',
+		ext_word_1_EX => PC4_EX, ext_word_2_EX => x"00000000", ext_signal_1_EX => jal_EX, ext_signal_2_EX => '0'
 		); 	
 	
 	------------------------------------------Etapa EX-------------------------------------------------------------------
@@ -400,7 +402,7 @@ begin
 	
 	
 	reset_MEM <= (reset);
-	load_MEM <= '1'; -- este procesador no para; cambiar por otra señal para implementar paradas
+	load_MEM <= '1'; -- este procesador no para; cambiar por otra seï¿½al para implementar paradas
 	Banco_EX_MEM: Banco_MEM PORT MAP ( ALU_out_EX => ALU_out_EX, ALU_out_MEM => ALU_out_MEM, clk => clk, 
 		reset => reset_MEM, load => load_MEM, MemWrite_EX => MemWrite_EX,
 		MemRead_EX => MemRead_EX, MemtoReg_EX => MemtoReg_EX, RegWrite_EX => RegWrite_EX, 
@@ -409,9 +411,9 @@ begin
 		BusB_EX => BusB_EX, BusB_MEM => BusB_MEM, 
 		RW_EX => RW_EX, RW_MEM => RW_MEM,
 		valid_I_EX => valid_I_EX, valid_I_MEM => valid_I_MEM,
-		-- Puertos de extensión. Inicialmente están desconectados
-		ext_word_1_EX => x"00000000", ext_word_2_EX => x"00000000", ext_signal_1_EX => '0', ext_signal_2_EX => '0',
-		ext_word_1_MEM => open, ext_word_2_MEM => open, ext_signal_1_MEM => open, ext_signal_2_MEM => open
+		-- Puertos de extensiï¿½n. Inicialmente estï¿½n desconectados
+		ext_word_1_EX => PC4_EX, ext_word_2_EX => x"00000000", ext_signal_1_EX => jal_EX, ext_signal_2_EX => '0',
+		ext_word_1_MEM => PC4_MEM, ext_word_2_MEM => x"00000000", ext_signal_1_MEM => jal_MEM, ext_signal_2_MEM => '0'
 		);
 													
 	
@@ -419,8 +421,8 @@ begin
 	------------------------------------------Etapa MEM-------------------------------------------------------------------
 	--
 	
-	WE <= MemWrite_MEM and valid_I_MEM; --sólo se escribe si es una instrucción válida
-	RE <= MemRead_MEM and valid_I_MEM; --sólo se lee si es una instrucción válida
+	WE <= MemWrite_MEM and valid_I_MEM; --sï¿½lo se escribe si es una instrucciï¿½n vï¿½lida
+	RE <= MemRead_MEM and valid_I_MEM; --sï¿½lo se lee si es una instrucciï¿½n vï¿½lida
 	
 	Mem_D: Data_Memory_Subsystem PORT MAP (
 			CLK => CLK, ADDR => ALU_out_MEM, Din => BusB_MEM, WE => MemWrite_MEM, 
@@ -428,7 +430,7 @@ begin
 			);
 
 	
-	-- La instrucción en WB será válida el próximo ciclo si la instrucción en Mem es válida
+	-- La instrucciï¿½n en WB serï¿½ vï¿½lida el prï¿½ximo ciclo si la instrucciï¿½n en Mem es vï¿½lida
 	valid_I_WB_in <= valid_I_MEM;
 	
 	Banco_MEM_WB: Banco_WB PORT MAP (
@@ -437,20 +439,20 @@ begin
 			MemtoReg_MEM => MemtoReg_MEM, RegWrite_MEM => RegWrite_MEM, MemtoReg_WB => MemtoReg_WB, RegWrite_WB => RegWrite_WB, 
 			RW_MEM => RW_MEM, RW_WB => RW_WB,
 			valid_I_WB_in => valid_I_WB_in, valid_I_WB => valid_I_WB,
-			-- Puertos de extensión. Inicialmente están desconectados
-			ext_word_1_MEM => x"00000000", ext_word_2_MEM => x"00000000", ext_signal_1_MEM => '0', ext_signal_2_MEM => '0',
-			ext_word_1_WB => open, ext_word_2_WB => open, ext_signal_1_WB => open, ext_signal_2_WB => open
+			-- Puertos de extensiï¿½n. Inicialmente estï¿½n desconectados
+			ext_word_1_MEM => PC4_MEM, ext_word_2_MEM => x"00000000", ext_signal_1_MEM => jal_MEM, ext_signal_2_MEM => '0',
+			ext_word_1_WB => PC4_EX, ext_word_2_WB =>  x"00000000", ext_signal_1_WB => jal_WB, ext_signal_2_WB => '0'
 			);
 	
 	--
 	------------------------------------------Etapa WB-------------------------------------------------------------------						
-	--	Mux 4 a 1. Inicialmente sólo se usan dos entradas, y las otras dos están desconectadas, pero se pueden usar para las nuevas instrucciones	
-	--  Para ello hay que realizar las conexiones necesarias, y ajustar la señal de control del multiplexor			
-	ctrl_Mux4a1_escritura_BR <= '0'&MemtoReg_WB	;
-	mux_busW: mux4_1 port map (Din0 => ALU_out_WB, DIn1 => MDR, DIn2 => x"00000000", DIn3 => x"00000000", ctrl => ctrl_Mux4a1_escritura_BR, Dout => busW);
+	--	Mux 4 a 1. Inicialmente sï¿½lo se usan dos entradas, y las otras dos estï¿½n desconectadas, pero se pueden usar para las nuevas instrucciones	
+	--  Para ello hay que realizar las conexiones necesarias, y ajustar la seï¿½al de control del multiplexor			
+	ctrl_Mux4a1_escritura_BR <= jal_WB&MemtoReg_WB	;
+	mux_busW: mux4_1 port map (Din0 => ALU_out_WB, DIn1 => MDR, DIn2 => PC4_EX, DIn3 => x"00000000", ctrl => ctrl_Mux4a1_escritura_BR, Dout => busW);
 	
 --------------------------------------------------------------------------------------------------
------------ Contadores de eventos. Nos permiten calcular métricas de rendimiento como el CPI
+----------- Contadores de eventos. Nos permiten calcular mï¿½tricas de rendimiento como el CPI
 -------------------------------------------------------------------------------------------------- 
 	-- Contador de ciclos totales
 	cont_cycles: counter 	generic map (size => 16)
@@ -460,7 +462,7 @@ begin
 							port map (clk => clk, reset => reset, count_enable => inc_I, count => Ins);
 	
 	inc_cycles <= '1';--Done
-	inc_I <= valid_I_WB; --Cuenta las instrucciones válidas que llegan a WB 
+	inc_I <= valid_I_WB; --Cuenta las instrucciones vï¿½lidas que llegan a WB 
 		
 end Behavioral;
 
