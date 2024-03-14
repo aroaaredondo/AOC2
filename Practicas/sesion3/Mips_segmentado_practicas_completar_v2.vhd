@@ -388,7 +388,7 @@ begin
 		valid_I_EX_in => valid_I_EX_in, valid_I_EX => valid_I_EX,
 		-- Puertos de extensi�n. Inicialmente est�n desconectados
 		ext_word_1_ID => PC4_ID, ext_word_2_ID => x"00000000", ext_signal_1_ID => jal_ID, ext_signal_2_ID => '0',
-		ext_word_1_EX => PC4_EX, ext_word_2_EX => x"00000000", ext_signal_1_EX => jal_EX, ext_signal_2_EX => '0'
+		ext_word_1_EX => PC4_EX, ext_word_2_EX => open, ext_signal_1_EX => jal_EX, ext_signal_2_EX => open
 		); 	
 	
 	------------------------------------------Etapa EX-------------------------------------------------------------------
@@ -413,7 +413,7 @@ begin
 		valid_I_EX => valid_I_EX, valid_I_MEM => valid_I_MEM,
 		-- Puertos de extensi�n. Inicialmente est�n desconectados
 		ext_word_1_EX => PC4_EX, ext_word_2_EX => x"00000000", ext_signal_1_EX => jal_EX, ext_signal_2_EX => '0',
-		ext_word_1_MEM => PC4_MEM, ext_word_2_MEM => x"00000000", ext_signal_1_MEM => jal_MEM, ext_signal_2_MEM => '0'
+		ext_word_1_MEM => PC4_MEM, ext_word_2_MEM => open, ext_signal_1_MEM => jal_MEM, ext_signal_2_MEM => open
 		);
 													
 	
@@ -441,7 +441,7 @@ begin
 			valid_I_WB_in => valid_I_WB_in, valid_I_WB => valid_I_WB,
 			-- Puertos de extensi�n. Inicialmente est�n desconectados
 			ext_word_1_MEM => PC4_MEM, ext_word_2_MEM => x"00000000", ext_signal_1_MEM => jal_MEM, ext_signal_2_MEM => '0',
-			ext_word_1_WB => PC4_WB, ext_word_2_WB =>  x"00000000", ext_signal_1_WB => jal_WB, ext_signal_2_WB => '0'
+			ext_word_1_WB => PC4_WB, ext_word_2_WB =>  open, ext_signal_1_WB => jal_WB, ext_signal_2_WB => open
 			);
 	
 	--

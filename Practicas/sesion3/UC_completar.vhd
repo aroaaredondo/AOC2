@@ -76,7 +76,7 @@ begin
 			--BEQ
 			WHEN  BEQ_opcode  	=>  Branch <= '1'; RegWrite <= '1'; 
 			-- JAL
-			WHEN  jal_opcode  	=>  jal <= '1'; RegWrite <= '1'; Branch <= '1' --completar ¿Como guardo PC en rs?
+			WHEN  jal_opcode  	=>  jal <= '1'; RegWrite <= '1'; Branch <= '1' ;--completar ¿Como guardo PC en rs?
 			-- JAL
 			WHEN  RET_opcode  	=>  ret <= '1'; --completar
 			-- Instrucci�n no definida

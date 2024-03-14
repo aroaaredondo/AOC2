@@ -1,8 +1,9 @@
 
+JAL     r0,    #18          ---Poner la direccion donde queramos saltar   
 MOV     #70,  r1         @ Cargar 70 en r1 que es la posicion donde se encuentran los datos.
-JAL     r0,    #7           ---Poner la direccion donde queramos saltar   
+no se puede hacer mov por lo tanto:LW     r1,    0(r3)           08610000 y cargar direcion 70 en Memproa de datos
 ADD r3, r2, r8    @ Sumar r2 a r8
-nop
+MOV r9, #0
 nop
 ADD r8, r4, r8    @ Sumar r4 a r8
 nop
@@ -14,7 +15,8 @@ ADD r8, r6, r8    @ Sumar r6 a r8
 nop
 nop
 ADD r8, r7, r8    @ Sumar r7 a r8
-MOV r9, #0
+nop
+nop
 SW r8,  0(r9)             @ Guardar el resultado en la posicion 0
 HALT   
 SUBRUTINA:
@@ -23,12 +25,44 @@ LW      r3,  4(r1)
 LW      r4,  8(r1)
 LW      r5,  12(r1)
 LW      r6,  16(r1)
-LW      r7,  18(r1)
+LW      r7,  20(r1)
 RET    r0,     ---Volver al PC
 
-@70:800 000
-@71:50 000
-@72:1 000
-@73:700
-@74:60
-@75:9
+@70:800 000    000C3500
+@71:50 000     0000C350
+@72:1 000      000003E8
+@73:700        000002BC
+@74:60         0000003C
+@75:9          00000009
+
+
+HEXADECIAMAL
+
+JAL     r0,    #19            14000013  
+LW     r1,    4(r3)           08610004 en la segunda memoria de datos tengo el 70 (mov r1, #70)
+ADD r8,r3, r2                 04624000
+LW r9, 0(r10)                 09490000         en la primera memoria de datos tengo el 70 MOV r9, #0                    
+nop                           00221800
+ADD r8, r4, r8                05044000
+nop                           00221800
+nop                           00221800
+ADD r8, r5, r8                05054000
+nop                           00221800
+nop                           00221800
+ADD r8, r6, r8                05064000
+nop                           00221800
+nop                           00221800
+ADD r8, r7, r8                05074000
+nop                           00221800
+nop                           00221800
+SW r8,  0(r9)                 0D280000
+JAL    r0,    #0              14000000
+RET r0                       18000000                 
+LW      r2,  0(r1)           08220000
+LW      r3,  4(r1)           08230004
+LW      r4,  8(r1)           08240008
+LW      r5,  12(r1)          0825000C
+LW      r6,  16(r1)          08260010
+LW      r7,  20(r1)          08270014
+RET    r0                    18000000
+```

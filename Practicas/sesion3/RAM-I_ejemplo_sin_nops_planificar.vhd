@@ -40,10 +40,10 @@ end memoriaRAM_I;
 
 architecture Behavioral of memoriaRAM_I is
 type RamType is array(0 to 127) of std_logic_vector(31 downto 0);
-signal RAM : RamType := (  					X"08010000", X"09020004", X"04221800", X"0C830004", X"1063FFFB", X"00000000", X"00000000", X"00000000", -- palabras 0,1,2,3,4,5,6,7
-								X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", -- palabras 8,9,...
-								X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000",
-								X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000",
+signal RAM : RamType := (  					X"14000013", X"08610004", X"04624000", X"09490000", X"00221800", X"05044000", X"00221800", X"00221800", -- palabras 0,1,2,3,4,5,6,7
+								X"05054000", X"00221800", X"00221800", X"05064000", X"00221800", X"00221800", X"05074000", X"00221800", -- palabras 8,9,...
+								X"00221800", X"0D280000", X"14000000", X"18000000", X"08220000", X"08230004", X"08240008", X"0825000C",
+								X"08260010", X"08270014", X"18000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000",
 								X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000",
 								X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000",
 								X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000", X"00000000",
@@ -59,17 +59,17 @@ signal RAM : RamType := (  					X"08010000", X"09020004", X"04221800", X"0C83000
 signal dir_7:  std_logic_vector(6 downto 0); 
 begin
  
- dir_7 <= ADDR(8 downto 2); -- como la memoria es de 128 plalabras no usamos la dirección completa sino sólo 7 bits. Como se direccionan los bytes, pero damos palabras no usamos los 2 bits menos significativos
+ dir_7 <= ADDR(8 downto 2); -- como la memoria es de 128 plalabras no usamos la direcciï¿½n completa sino sï¿½lo 7 bits. Como se direccionan los bytes, pero damos palabras no usamos los 2 bits menos significativos
  process (CLK)
     begin
         if (CLK'event and CLK = '1') then
-            if (WE = '1') then -- sólo se escribe si WE vale 1
+            if (WE = '1') then -- sï¿½lo se escribe si WE vale 1
                 RAM(conv_integer(dir_7)) <= Din;
             end if;
         end if;
     end process;
 
-    Dout <= RAM(conv_integer(dir_7)) when (RE='1') else "00000000000000000000000000000000"; --sólo se lee si RE vale 1
+    Dout <= RAM(conv_integer(dir_7)) when (RE='1') else "00000000000000000000000000000000"; --sï¿½lo se lee si RE vale 1
 
 end Behavioral;
 
