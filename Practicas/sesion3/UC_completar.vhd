@@ -74,9 +74,9 @@ begin
 			--SW
 			WHEN  SW_opcode  	=>  ALUSrc <= '1'; MemWrite <= '1'; 
 			--BEQ
-			WHEN  BEQ_opcode  	=>  Branch <= '1'; 
+			WHEN  BEQ_opcode  	=>  Branch <= '1'; RegWrite <= '1'; 
 			-- JAL
-			WHEN  jal_opcode  	=>  jal <= '1'; --completar
+			WHEN  jal_opcode  	=>  jal <= '1'; RegWrite <= '1'; Branch <= '1' --completar ¿Como guardo PC en rs?
 			-- JAL
 			WHEN  RET_opcode  	=>  ret <= '1'; --completar
 			-- Instrucci�n no definida

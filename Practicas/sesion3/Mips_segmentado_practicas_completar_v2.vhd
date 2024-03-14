@@ -363,8 +363,8 @@ begin
 	-- Salto tomado se debe activar cada vez que la instrucci�n en D produzca un salto en la ejecuci�n.
 	-- Eso incluye los saltos tomados en los BEQs (Z AND Branch_ID)
 	-- Como en la versi�n inicial las entradas 2 y 3 no se usan, PCSrc(1) empieza con valor '0'
-	PCSrc(1) <= '0';
-	PCSrc(0) <= Z AND Branch_ID;
+	PCSrc(1) <= ret_ID;
+	PCSrc(0) <= (jal_ID OR Z) AND Branch_ID;
 								
 	-- En este procesador no se invalidan instrucciones en ID. En el proyecto lo haremos
 	valid_I_EX_in	<=  valid_I_ID;
@@ -441,7 +441,7 @@ begin
 			valid_I_WB_in => valid_I_WB_in, valid_I_WB => valid_I_WB,
 			-- Puertos de extensi�n. Inicialmente est�n desconectados
 			ext_word_1_MEM => PC4_MEM, ext_word_2_MEM => x"00000000", ext_signal_1_MEM => jal_MEM, ext_signal_2_MEM => '0',
-			ext_word_1_WB => PC4_EX, ext_word_2_WB =>  x"00000000", ext_signal_1_WB => jal_WB, ext_signal_2_WB => '0'
+			ext_word_1_WB => PC4_WB, ext_word_2_WB =>  x"00000000", ext_signal_1_WB => jal_WB, ext_signal_2_WB => '0'
 			);
 	
 	--
@@ -449,7 +449,7 @@ begin
 	--	Mux 4 a 1. Inicialmente s�lo se usan dos entradas, y las otras dos est�n desconectadas, pero se pueden usar para las nuevas instrucciones	
 	--  Para ello hay que realizar las conexiones necesarias, y ajustar la se�al de control del multiplexor			
 	ctrl_Mux4a1_escritura_BR <= jal_WB&MemtoReg_WB	;
-	mux_busW: mux4_1 port map (Din0 => ALU_out_WB, DIn1 => MDR, DIn2 => PC4_EX, DIn3 => x"00000000", ctrl => ctrl_Mux4a1_escritura_BR, Dout => busW);
+	mux_busW: mux4_1 port map (Din0 => ALU_out_WB, DIn1 => MDR, DIn2 => PC4_WB, DIn3 => x"00000000", ctrl => ctrl_Mux4a1_escritura_BR, Dout => busW);
 	
 --------------------------------------------------------------------------------------------------
 ----------- Contadores de eventos. Nos permiten calcular m�tricas de rendimiento como el CPI
