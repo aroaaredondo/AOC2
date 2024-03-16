@@ -448,7 +448,8 @@ begin
 	------------------------------------------Etapa WB-------------------------------------------------------------------						
 	--	Mux 4 a 1. Inicialmente s�lo se usan dos entradas, y las otras dos est�n desconectadas, pero se pueden usar para las nuevas instrucciones	
 	--  Para ello hay que realizar las conexiones necesarias, y ajustar la se�al de control del multiplexor			
-	ctrl_Mux4a1_escritura_BR <= jal_WB&MemtoReg_WB	;
+	ctrl_Mux4a1_escritura_BR(1) <= jal_WB;
+	ctrl_Mux4a1_escritura_BR(0) <= MemtoReg_WB;
 	mux_busW: mux4_1 port map (Din0 => ALU_out_WB, DIn1 => MDR, DIn2 => PC4_WB, DIn3 => x"00000000", ctrl => ctrl_Mux4a1_escritura_BR, Dout => busW);
 	
 --------------------------------------------------------------------------------------------------
