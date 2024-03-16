@@ -1,4 +1,6 @@
 ----------------------------------------------------------------------------------
+-- Nombre: Aroa Redondo Zamora 
+-- Nip: 851769
 -- Description: Mips segmentado tal y como lo hemos estudiado en clase. Sus caracter�sticas son:
 -- Saltos 1-retardados
 -- instrucciones aritm�ticas, LW, SW y BEQ
