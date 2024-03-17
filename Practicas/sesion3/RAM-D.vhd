@@ -1,7 +1,6 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
+-- Nombre: Aroa Redondo Zamora 
+-- Nip: 851769 
 -- Create Date:    14:12:11 04/04/2014 
 -- Design Name: 
 -- Module Name:    memoriaRAM - Behavioral 

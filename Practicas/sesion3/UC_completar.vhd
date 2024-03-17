@@ -1,7 +1,6 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
+-- Nombre: Aroa Redondo Zamora 
+-- Nip: 851769
 -- Create Date:    13:14:28 04/07/2014 
 -- Design Name: 
 -- Module Name:    UC - Behavioral 

@@ -10,7 +10,7 @@ GHDLFLAGS= --ieee=synopsys -fexplicit --workdir=WORK
 all: testbench
 
 # Elaboration target
-testbench: /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164-body.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/numeric_std.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/numeric_std-body.o WORK/testbench_Mips.o WORK/Mips_segmentado_practicas_completar_v2.o WORK/REGISTER.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_arith.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_unsigned.o WORK/adder32.o WORK/mux4_1.o WORK/RAM-I_ejemplo_sin_nops_planificar.o WORK/Banco_ID.o WORK/BReg.o WORK/Ext_signo.o WORK/bits_shifter.o WORK/UC_completar.o WORK/Banco_EX.o WORK/mux2_1.o WORK/ALU.o WORK/mux2_5bits.o WORK/Banco_MEM.o WORK/RAM-D_ejemplo.o WORK/Banco_WB.o WORK/counter.o
+testbench: /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164-body.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/numeric_std.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/numeric_std-body.o WORK/testbench_Mips.o WORK/Mips_segmentado_practicas_completar_v2.o WORK/REGISTER.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_arith.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_unsigned.o WORK/adder32.o WORK/mux4_1.o WORK/RAM-I_851769.o WORK/Banco_ID.o WORK/BReg.o WORK/Ext_signo.o WORK/bits_shifter.o WORK/UC_completar.o WORK/Banco_EX.o WORK/mux2_1.o WORK/ALU.o WORK/mux2_5bits.o WORK/Banco_MEM.o WORK/RAM-D.o WORK/Banco_WB.o WORK/counter.o
 	$(GHDL) -e $(GHDLFLAGS) $@
 
 # Run target
@@ -46,7 +46,7 @@ WORK/adder32.o: adder32.vhd
 	$(GHDL) -a $(GHDLFLAGS) $<
 WORK/mux4_1.o: mux4_1.vhd
 	$(GHDL) -a $(GHDLFLAGS) $<
-WORK/RAM-I_ejemplo_sin_nops_planificar.o: RAM-I_ejemplo_sin_nops_planificar.vhd
+WORK/RAM-I_851769.o: RAM-I_851769.vhd
 	$(GHDL) -a $(GHDLFLAGS) $<
 WORK/Banco_ID.o: Banco_ID.vhd
 	$(GHDL) -a $(GHDLFLAGS) $<
@@ -68,7 +68,7 @@ WORK/mux2_5bits.o: mux2_5bits.vhd
 	$(GHDL) -a $(GHDLFLAGS) $<
 WORK/Banco_MEM.o: Banco_MEM.vhd
 	$(GHDL) -a $(GHDLFLAGS) $<
-WORK/RAM-D_ejemplo.o: RAM-D_ejemplo.vhd
+WORK/RAM-D.o: RAM-D.vhd
 	$(GHDL) -a $(GHDLFLAGS) $<
 WORK/Banco_WB.o: Banco_WB.vhd
 	$(GHDL) -a $(GHDLFLAGS) $<
@@ -87,7 +87,7 @@ WORK/REGISTER.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o /usr/lib/ghd
 /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_unsigned.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_arith.o
 WORK/adder32.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_arith.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_unsigned.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/numeric_std.o
 WORK/mux4_1.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o
-WORK/RAM-I_ejemplo_sin_nops_planificar.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_unsigned.o
+WORK/RAM-I_851769.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_unsigned.o
 WORK/Banco_ID.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o
 WORK/BReg.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/numeric_std.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_unsigned.o
 WORK/Ext_signo.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o
@@ -98,6 +98,6 @@ WORK/mux2_1.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o
 WORK/ALU.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_arith.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_unsigned.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/numeric_std.o
 WORK/mux2_5bits.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o
 WORK/Banco_MEM.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o
-WORK/RAM-D_ejemplo.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_unsigned.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/numeric_std.o
+WORK/RAM-D.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_unsigned.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/numeric_std.o
 WORK/Banco_WB.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o
 WORK/counter.o:  /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_1164.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_arith.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/std_logic_unsigned.o /usr/lib/ghdl/llvm/vhdl/ieee/v93/numeric_std.o
